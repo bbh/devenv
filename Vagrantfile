@@ -4,8 +4,8 @@ Vagrant::Config.run do |config|
     dev1.vm.box = "quantal64"
     dev1.vm.network :hostonly, "192.168.1.5"
     dev1.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "Curso/puppet/manifests"
-      puppet.module_path = "Curso/puppet/modules"
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
       puppet.manifest_file = "dev.pp"
     end
   end
@@ -14,8 +14,8 @@ Vagrant::Config.run do |config|
     dev2.vm.box = "quantal64"
     dev2.vm.network :hostonly, "192.168.1.6"
     dev2.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "Curso/puppet/manifests"
-      puppet.module_path = "Curso/puppet/modules"
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
       puppet.manifest_file = "dev.pp"
     end
   end
@@ -24,8 +24,8 @@ Vagrant::Config.run do |config|
     svn.vm.box = "quantal64"
     svn.vm.network :hostonly, "192.168.1.10"
     svn.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "Curso/puppet/manifests"
-      puppet.module_path = "Curso/puppet/modules"
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
       puppet.manifest_file = "subversion.pp"
     end
   end
@@ -34,8 +34,8 @@ Vagrant::Config.run do |config|
     git.vm.box = "quantal64"
     git.vm.network :hostonly, "192.168.1.15"
     git.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "Curso/puppet/manifests"
-      puppet.module_path = "Curso/puppet/modules"
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
       puppet.manifest_file = "git.pp"
     end
   end
@@ -159,8 +159,8 @@ Vagrant::Config.run do |config|
     web.vm.box = "quantal64"
     web.vm.network :hostonly, "192.168.1.13"
     web.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "Curso/puppet/manifests"
-      puppet.module_path = "Curso/puppet/modules"
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
       puppet.manifest_file = "web.pp"
     end
   end
@@ -170,7 +170,7 @@ Vagrant::Config.run do |config|
     test.vm.network :hostonly, "192.168.1.70"
     #dbm.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
     test.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "Chef/cookbooks"
+      chef.cookbooks_path = "chef/cookbooks"
       chef.run_list = [ "recipe[TEST::default]" ]
     end
   end
