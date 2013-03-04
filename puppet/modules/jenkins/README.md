@@ -6,7 +6,7 @@ This module allows you to up a VM with a working version of Jenkins.
 Requirements
 ------------
 This VM has been proveed with Ubuntu Quantal (12.10), you can find the base  
-image at the [Vagrant boxes][1] site
+image at the [Vagrant boxes][1] site.
 
 Vagrant example
 ---------------
@@ -27,7 +27,7 @@ end</pre>
 Manifest example
 ----------------
 If you are using this VM out of the "devenv" project, you need to create your  
-own manifest to call this modules, the following is an example of a Jekings  
+own manifest to call this modules, the following is an example of a Jenkins  
 that includes the required artifacts to test PHP code and obtain the code from  
 a Git repository.
 <pre>
