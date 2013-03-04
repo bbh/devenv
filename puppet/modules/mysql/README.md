@@ -17,4 +17,4 @@ To start the API node
 
 To start the Data node
 <pre>
-ndbmtd -c 192.168.1.50 --ndb-nodeid=<your node id> --initial-start</pre>
+ndbmtd -c 192.168.1.50 --ndb-nodeid=[your_node_id] --initial-start</pre>
