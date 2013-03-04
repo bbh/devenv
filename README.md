@@ -34,7 +34,8 @@ Vagrant Notes
 It's assumed that you already know how to use [Vagrant][1].
 
 This project provides a Vagrantfile you can use to create your VMs, please make  
-sure that you already have Vagrant installed and vagrant boxes with same name.
+sure that you already have Vagrant installed and vagrant boxes with same name  
+than the ones in the Vagrantfile.
 
 Puppet's requirements
 ---------------------
