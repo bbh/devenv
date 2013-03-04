@@ -6,7 +6,7 @@ programmers and help them to develop and test their applications in environments
 closer to the real production than their standalone local environments.
 
 To do it, we are currently using Vagrant/Puppet and Virtualbox. This project  
-includes VMs to provide the followin list of services:
+includes VMs to provide the following services:
 
 * Git
 * Subversion
@@ -38,7 +38,7 @@ The puppet module "jenkins" requires the submodule "apt" from
 https://github.com/camptocamp/puppet-apt
 
 Download the MySQL Cluster tarball from http://www.mysql.com/downloads/cluster/  
-add it to the "files" dir (create it if not exists) in puppet module "mysql".  
+and add it to the "files" directory in the "mysql" puppet module.  
 Example:
 <pre>
 $ cp ~/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz \
