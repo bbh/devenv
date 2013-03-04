@@ -1,14 +1,20 @@
-puppet-mysql
-============
+Puppet - MySQL
+==============
 
-This puppet helps to create MySQL environments for Master-Slave and Cluster models
+This module helps to create MySQL environments for Master-Slave & Cluster models
+
+MySQL cluster
+-------------
+Once installed, you can use the following commands to start your cluster
 
 To start the Management node
-`ndb_mgmd -f /var/lib/mysql-cluster/config.ini --ndb-nodeid=1`
+<pre>
+`ndb_mgmd -f /var/lib/mysql-cluster/config.ini --ndb-nodeid=1`</pre>
 
 To start the API node
-`/etc/init.d/mysql.server start`
+<pre>
+`/etc/init.d/mysql.server start`</pre>
 
 To start the Data node
-`ndbmtd -c 192.168.1.20 --ndb-nodeid=2 --initial-start`
-
+<pre>
+`ndbmtd -c 192.168.1.20 --ndb-nodeid=2 --initial-start`</pre>
