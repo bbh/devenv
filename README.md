@@ -1,8 +1,6 @@
 Development Environments with Vagrant
 =====================================
 
-Copyright (c) 2010 Basilio Briceño Hernandez <bbh at briceno.mx>
-
 About
 -----
 The intention of this project is to provide a complete development pipeline for  
@@ -51,7 +49,15 @@ Example:
 $ cp ~/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz \
      ~/devenv/puppet/modules/mysql/files/</pre>
 
+Legal
+-----
+This project is under the terms of the [LGPL][5] license version 3.0, submodules  
+and third party components are licensed according to their owners.
+
+Copyright ‘&copy;’ 2013 Basilio Briceño <bbh@briceno.mx>
+
 [1]: http://docs.vagrantup.com/v1/docs/ "Vagrant documentation"
 [2]: http://docs.puppetlabs.com/puppet/ "Puppet documentation"
 [3]: https://github.com/camptocamp/puppet-apt "Camptocamp's github repository"
 [4]: http://www.mysql.com/downloads/cluster/ "MySQL Cluster download"
+[5]: http://www.gnu.org/copyleft/lesser.html "GNU Lesser General Public License"
