@@ -1,0 +1,7 @@
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(64) NOT NULL,
+  description VARCHAR(128) NULL
+) ENGINE=NDBCLUSTER;
+
+INSERT INTO users(username,description) VALUES('Basilio','Author');

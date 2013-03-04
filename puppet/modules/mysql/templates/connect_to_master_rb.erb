@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'mysql'
+
+begin
+
+  host = '<%= master_host %>'
+  user = '<%= master_user %>'
+  pass = '<%= master_pass %>'
+
+  # get filename and position from master
+  con1 = Mysql.new host, user, pass
+  rs = con1.query 'SHOW MASTER STATUS'
+  rows = rs.fetch_row
+  rs.free
+
+  # prepare SQL to change master in slave
+  sql = "CHANGE MASTER TO MASTER_HOST='#{host}'," <<
+                         "MASTER_USER='#{user}', " <<
+                         "MASTER_PASSWORD='#{pass}',"<<
+                         "MASTER_LOG_FILE='#{rows[0]}',"<<
+                         "MASTER_LOG_POS=#{rows[1]};"
+
+  # change master in slave
+  con2 = Mysql.new "localhost", "root", ""
+  con2.query sql
+
+rescue Mysql::Error => e
+
+  puts e.errno
+  puts e.error
+
+ensure
+
+  con1.close if con1
+  con2.close if con2
+
+end

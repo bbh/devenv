@@ -1,0 +1,44 @@
+#!/bin/env ruby
+
+filepath = '/etc/sysconfig/iptables'
+newport = '<%= port %>'
+
+# check if rule has not been applied
+if !/.*\-\-dport\s<%= port %>\s\-j\sACCEPT.*/.match( File.open( filepath,
+                                                                'rb' ).read  )
+
+  # open file
+  file = File.open( filepath, 'r' )
+
+  content = ''
+
+  # iterate by line and find port 22 rule
+  file.each { |line|
+
+    # if port 22 rule found set the new port rule
+    if /.*\-\-dport\s22\s\-j\sACCEPT$/.match( line )
+
+      content << line <<
+              "-A INPUT -m state --state NEW -m tcp -p tcp --dport " <<
+              newport << " -j ACCEPT\n"
+
+    # not port 22 rule just add the line as normal
+    else
+
+      content << line
+
+    end
+  }
+
+  file.close
+
+  # write new content to file
+  file = File.open( filepath, 'w' )
+
+  file.write( content )
+
+  file.close
+
+  exec( 'service iptables restart' )
+
+end

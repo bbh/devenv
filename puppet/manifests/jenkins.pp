@@ -1,0 +1,11 @@
+include jenkins
+include php::phpunit
+include php::codesniffer
+include php::depend
+include php::messdetector
+include php::cpd
+include php::dcd
+include jenkins::php::plugins
+include jenkins::php::template
+include jenkins::ant
+include git

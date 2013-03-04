@@ -1,0 +1,17 @@
+[gitosis]
+loglevel = DEBUG
+
+[group gitosis-admin]
+writable = gitosis-admin
+members =
+
+<% repositories.each do |repo| -%>
+
+[repo <%= repo["name"] %>]
+description = none
+
+[group <%= repo["name"] %>_committers]
+writable = <%= repo["name"] %>
+members = <%= repo["owner"] %>
+
+<% end -%>

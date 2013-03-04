@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd /tmp/
+tar xzvf mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz
+
+cp mysql-cluster-gpl-7.3.0-linux2.6-x86_64/bin/ndb_mgm* /usr/local/bin/
+
+chmod +x /usr/local/bin/ndb_mgm*
+cd
+rm -rf /tmp/mysql-cluster-gpl-7.3.0-linux2.6-x86_*
+
+mkdir /var/lib/mysql-cluster

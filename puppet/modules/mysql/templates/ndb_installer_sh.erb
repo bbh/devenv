@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# SQL node
+groupadd mysql
+useradd -g mysql mysql
+
+cd /usr/local
+tar xzvf /tmp/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz
+ln -s /usr/local/mysql-cluster-gpl-7.3.0-linux2.6-x86_64 /usr/local/mysql
+cd mysql
+scripts/mysql_install_db --user=mysql
+
+chown -R root .
+chown -R mysql data
+chgrp -R mysql .
+
+cp support-files/mysql.server /etc/rc.d/init.d/
+chmod +x /etc/rc.d/init.d/mysql.server
+chkconfig --add mysql.server
+
+# Data node
+ln -s /usr/local/mysql/bin/ndbd /usr/local/bin/ndbd
+ln -s /usr/local/mysql/bin/ndbmtd /usr/local/bin/ndbmtd
