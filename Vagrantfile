@@ -157,7 +157,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :web do |web|
     web.vm.box = "quantal64"
-    web.vm.network :hostonly, "192.168.1.13"
+    web.vm.network :hostonly, "192.168.1.30"
     web.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
       puppet.module_path = "puppet/modules"
