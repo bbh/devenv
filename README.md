@@ -45,7 +45,7 @@ The puppet module "jenkins" requires the submodule "apt" from [Github][3]
 
 The puppet module "mysql" (cluster) requires that yout get the tarball from  
 [MySQL Downloads][4] and add it to the "files" directory (create it if do not  
-exists) in the "mysql" puppet module.  
+exists).  
 Example:
 <pre>
 $ cp ~/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz \
