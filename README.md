@@ -54,7 +54,7 @@ Legal
 This project is under the terms of the [LGPL][5] license version 3.0, submodules  
 and third party components are licensed according to their owners.
 
-Copyright ‘&copy;’ 2013 Basilio Briceño <bbh@briceno.mx>
+Copyright &copy; 2013 Basilio Briceño `<bbh at briceno.mx>`
 
 [1]: http://docs.vagrantup.com/v1/docs/ "Vagrant documentation"
 [2]: http://docs.puppetlabs.com/puppet/ "Puppet documentation"
