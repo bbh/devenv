@@ -52,7 +52,7 @@ $ cp ~/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz \
 
 Legal
 -----
-This project is under the terms of the [LGPL][5] license version 3.0, submodules  
+This project is under the terms of the [LGPL][5] version 3.0, submodules  
 and third party components are licensed according to their owners.
 
 Copyright &copy; 2013 Basilio Briceño `<bbh at briceno.mx>`
