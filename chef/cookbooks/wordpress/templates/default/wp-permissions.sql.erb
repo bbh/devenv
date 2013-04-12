@@ -1,0 +1,5 @@
+GRANT ALL ON <%= @database %>.* TO '<%= @username %>'@'%' IDENTIFIED BY '<%= @password %>';
+GRANT ALL ON <%= @database %>.* TO '<%= @username %>'@'<%= node['fqdn'] %>' IDENTIFIED BY '<%= @password %>';
+GRANT ALL ON <%= @database %>.* TO '<%= @username %>'@'localhost' IDENTIFIED BY '<%= @password %>';
+
+FLUSH PRIVILEGES;

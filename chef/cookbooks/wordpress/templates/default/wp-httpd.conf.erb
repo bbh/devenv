@@ -1,0 +1,23 @@
+ServerName <%= node['fqdn'] %>:80
+
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+  ServerName <%= node['wp']['hostname'] %>
+  DocumentRoot <%= node['wp']['dir'] %>
+
+  <Directory <%= node['wp']['dir'] %>>
+    Options -Indexes FollowSymLinks FollowSymLinks
+    AllowOverride FileInfo Options
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  LogLevel info
+  ErrorLog <%= node['wp']['log_dir'] %>/<%= node['wp']['hostname'] %>-error.log
+  CustomLog <%= node['wp']['log_dir'] %>/<%= node['wp']['hostname'] %>-access.log combined
+
+  RewriteEngine On
+  RewriteLog <%= node['wp']['log_dir'] %>/<%= node['wp']['hostname'] %>-rewrite.log
+  RewriteLogLevel 0
+</VirtualHost>
