@@ -1,5 +1,5 @@
 devenv.sublime-project
 devenv.sublime-workspace
 .vagrant
-chef
+chef/git
 puppet/modules/mysql/files/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz
