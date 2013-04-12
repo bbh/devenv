@@ -73,6 +73,11 @@ Vagrant::Config.run do |config|
   config.vm.define :varnish do |varnish|
     varnish.vm.box = "centos6364m"
     varnish.vm.network :hostonly, "192.168.1.45"
+    varnish.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.module_path = "puppet/modules"
+      puppet.manifest_file = "varnish.pp"
+    end
   end
 
   config.vm.define :dbm do |dbm|
@@ -165,13 +170,13 @@ Vagrant::Config.run do |config|
     end
   end
 
-  config.vm.define :test do |test|
-    test.vm.box = "centos6364m"
-    test.vm.network :hostonly, "192.168.1.70"
-    #dbm.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
-    test.vm.provision :chef_solo do |chef|
+  config.vm.define :wordpress do |wp|
+    wp.vm.box = "centos6364m"
+    wp.vm.network :hostonly, "192.168.10.70"
+    wp.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
+    wp.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
-      chef.run_list = [ "recipe[TEST::default]" ]
+      chef.run_list = [ "recipe[wordpress::default]" ]
     end
   end
 
