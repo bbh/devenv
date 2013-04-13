@@ -45,8 +45,6 @@ package "httpd" do
   action :install
 end
 
-# create script to add server name and avoid common error at starting
-
 # Install PHP and it's extensions
 ["php", "php-mysql", "php-common", "php-gd", "php-mbstring", "php-devel",
  "php-xml"].each do |php|
@@ -56,7 +54,7 @@ end
 end
 
 # Download Wordpress
-remote_file "#{Chef::Config[:file_cache_path]}/wp-#{node['wp']['version']}.tar.gz" do
+remote_file "#{Chef::Config[:file_cache_path]}/wp-#{node['wp']['version']}.tgz" do
   checksum node['wp']['checksum']
   source "http://wordpress.org/wordpress-#{node['wp']['version']}.tar.gz"
   mode "0644"
@@ -71,19 +69,12 @@ directory "#{node['wp']['dir']}" do
   recursive true
 end
 
-# Create Wordpress logs directory
-directory "#{node['wp']['log_dir']}" do
-  owner "apache"
-  group "apache"
-  mode "0755"
-  action :create
-  recursive true
-end
-
 # Untar Wordpress
 execute "untar-wordpress" do
   cwd node['wp']['dir']
-  command "tar xzf #{Chef::Config[:file_cache_path]}/wp-#{node['wp']['version']}.tar.gz && mv wordpress/* . && rm -rf wordpress"
+  command "tar xzf #{Chef::Config[:file_cache_path]}/" <<
+          "wp-#{node['wp']['version']}.tgz && " <<
+          "mv wordpress/* . && rm -rf wordpress"
   action :run
 end
 
@@ -105,10 +96,21 @@ template "#{node['wp']['dir']}/wp-config.php" do
   action :create
 end
 
-# Download keys and salt
+# Create keys and salt config file using Wordpres API
 execute "get_salt" do
-  command "wget -O #{node['wp']['dir']}/wp-config-keys.php https://api.wordpress.org/secret-key/1.1/salt/"
+  command "wget -nv -O #{node['wp']['dir']}/wp-config-keys.php " <<
+          "https://api.wordpress.org/secret-key/1.1/salt/ && " <<
+          "sed -i \'1s/^/<?php\\n/\' #{node['wp']['dir']}/wp-config-keys.php"
   action :run
+end
+
+# Create Wordpress logs directory
+directory "#{node['wp']['log_dir']}" do
+  owner "apache"
+  group "apache"
+  mode "0755"
+  action :create
+  recursive true
 end
 
 # Start Apache
