@@ -54,7 +54,7 @@ end
 end
 
 # Download Wordpress
-remote_file "#{Chef::Config[:file_cache_path]}/wp-#{node['wp']['version']}.tgz" do
+remote_file "#{Chef::Config[:file_cache_path]}/wp-#{node['wp']['version']}.tar.gz" do
   checksum node['wp']['checksum']
   source "http://wordpress.org/wordpress-#{node['wp']['version']}.tar.gz"
   mode "0644"
@@ -71,10 +71,9 @@ end
 
 # Untar Wordpress
 execute "untar-wordpress" do
-  cwd node['wp']['dir']
+  cwd "#{node['wp']['dir']}/../"
   command "tar xzf #{Chef::Config[:file_cache_path]}/" <<
-          "wp-#{node['wp']['version']}.tgz && " <<
-          "mv wordpress/* . && rm -rf wordpress"
+          "wp-#{node['wp']['version']}.tar.gz"
   action :run
 end
 
