@@ -1,6 +1,6 @@
 wordpress Cookbook
 ==================
-This cokbooks installs and configures Wordpress in a standalone model (a single host with Apache/PHP anf MySQL in the same box) and works according to the instructions at http://codex.wordpress.org/Installing_WordPress. Does not set up a wordpress blog. You will need to do this manually by going to http://hostname/wp-admin/install.php (this URL may be different if you change the attribute values).
+This cokbooks installs and configures Wordpress in a standalone model (a single host with Apache/PHP anf MySQL in the same box) and works according to the instructions at http://codex.wordpress.org/Installing_WordPress.
 
 Requirements
 ------------
@@ -13,9 +13,6 @@ PHP
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
-
-e.g.
 #### wordpress::default
 <table>
   <tr>
@@ -25,19 +22,64 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['wordpress']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['wp']['version']</tt></td>
+    <td>String</td>
+    <td>Wordpress version</td>
+    <td><tt>3.5.1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['checksum']</tt></td>
+    <td>String</td>
+    <td>Verify the integrity of the wordpress tar ball</td>
+    <td><tt>f7d627bc886eac75aae22e526acdbdea244a12a92f02e6084ba5193d4b0d7a97</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['dir']</tt></td>
+    <td>String</td>
+    <td>Absulte path for the Wordpress installation</td>
+    <td><tt>/var/www/wordpress</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['log_dir']</tt></td>
+    <td>String</td>
+    <td>Absulte path for the Wordpress logs</td>
+    <td><tt>/var/log/httpd/wordpress</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['hostname']</tt></td>
+    <td>String</td>
+    <td>Your hostname for Apache configuration</td>
+    <td><tt>Your VM current hostname (localhost)</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['db']['database']</tt></td>
+    <td>String</td>
+    <td>Database name</td>
+    <td><tt>wordpress</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['db']['username']</tt></td>
+    <td>String</td>
+    <td>Username to access the database</td>
+    <td><tt>wp_user</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['db']['password']</tt></td>
+    <td>String</td>
+    <td>Password to access the database</td>
+    <td><tt>wordpress</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['wp']['db']['hostname']</tt></td>
+    <td>String</td>
+    <td>Hostname of your database</td>
+    <td><tt>Your VM current hostname (localhost)</tt></td>
   </tr>
 </table>
 
 Usage
 -----
 #### wordpress::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
 Just include `wordpress` in your node's `run_list`:
 
 ```json
@@ -51,9 +93,6 @@ Just include `wordpress` in your node's `run_list`:
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write you change
