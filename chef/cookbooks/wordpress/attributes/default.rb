@@ -1,10 +1,10 @@
 # General settings
 default['wp']['version'] = "3.5.1"
 default['wp']['checksum'] = "f7d627bc886eac75aae22e526acdbdea244a12a92f02e6084ba5193d4b0d7a97"
-default['wp']['dir'] = "/var/www/wp_test"
-default['wp']['db']['database'] = "wp_test"
-default['wp']['db']['username'] = "wp_test"
+default['wp']['dir'] = "/var/www/wordpress"
+default['wp']['log_dir'] = "/var/log/httpd/wordpress"
+default['wp']['hostname'] = [node['fqdn']]
+default['wp']['db']['database'] = "wordpress"
+default['wp']['db']['username'] = "wp_user"
 default['wp']['db']['password'] = "wordpress"
 default['wp']['db']['hostname'] = [node['fqdn']]
-default['wp']['hostname'] = [node['fqdn']]
-default['wp']['log_dir'] = "/var/log/httpd/wp_test"
