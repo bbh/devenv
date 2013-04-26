@@ -88,12 +88,21 @@ template "/etc/httpd/conf.d/drupal_#{node['drupal']['hostname']}.conf" do
 end
 
 # Add the Drupal configuration
-template "#{node['drupal']['dir']}/settings.php" do
+template "#{node['drupal']['dir']}/sites/default/settings.php" do
   source "settings.php.erb"
   owner "root"
   group "root"
   mode "0666"
   action :create
+end
+
+# Create Site files directory
+directory "#{node['drupal']['dir']}/sites/default/files" do
+  owner "root"
+  group "root"
+  mode "0777"
+  action :create
+  recursive true
 end
 
 # Create Drupal logs directory
