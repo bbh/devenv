@@ -173,10 +173,20 @@ Vagrant::Config.run do |config|
   config.vm.define :wordpress do |wp|
     wp.vm.box = "centos6364m"
     wp.vm.network :hostonly, "192.168.10.70"
-    wp.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
+    #wp.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
     wp.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
       chef.run_list = [ "recipe[wordpress::default]" ]
+    end
+  end
+
+  config.vm.define :drupal do |drupal|
+    drupal.vm.box = "centos6364m"
+    drupal.vm.network :hostonly, "192.168.10.70"
+    drupal.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
+    drupal.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "chef/cookbooks"
+      chef.run_list = [ "recipe[drupal::default]" ]
     end
   end
 

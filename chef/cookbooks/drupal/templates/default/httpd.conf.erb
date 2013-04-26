@@ -1,0 +1,23 @@
+ServerName <%= node['fqdn'] %>:80
+
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+  ServerName <%= node['drupal']['hostname'] %>
+  DocumentRoot <%= node['drupal']['dir'] %>
+
+  <Directory <%= node['drupal']['dir'] %>>
+    Options -Indexes FollowSymLinks FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  LogLevel info
+  ErrorLog <%= node['drupal']['log_dir'] %>/error.log
+  CustomLog <%= node['drupal']['log_dir'] %>/access.log combined
+
+  RewriteEngine On
+  RewriteLog <%= node['drupal']['log_dir'] %>/rewrite.log
+  RewriteLogLevel 0
+</VirtualHost>
