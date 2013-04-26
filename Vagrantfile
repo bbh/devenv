@@ -52,6 +52,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :memcached do |memcached|
     memcached.vm.box = "centos6364m"
+    memcached.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     memcached.vm.network :hostonly, "192.168.1.40"
     memcached.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -62,6 +63,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :memcached2 do |memcached2|
     memcached2.vm.box = "centos6364m"
+    memcached2.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     memcached2.vm.network :hostonly, "192.168.1.41"
     memcached2.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -102,6 +104,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :ndbm do |ndbm|
     ndbm.vm.box = "centos6364m"
+    ndbm.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     ndbm.vm.network :hostonly, "192.168.1.50"
     ndbm.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -112,6 +115,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :ndbd1 do |ndbd1|
     ndbd1.vm.box = "centos6364m"
+    ndbd1.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     ndbd1.vm.network :hostonly, "192.168.1.51"
     ndbd1.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -122,6 +126,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :ndbd2 do |ndbd2|
     ndbd2.vm.box = "centos6364m"
+    ndbd2.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     ndbd2.vm.network :hostonly, "192.168.1.52"
     ndbd2.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -172,8 +177,8 @@ Vagrant::Config.run do |config|
 
   config.vm.define :wordpress do |wp|
     wp.vm.box = "centos6364m"
+    wp.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     wp.vm.network :hostonly, "192.168.10.70"
-    #wp.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
     wp.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
       chef.run_list = [ "recipe[wordpress::default]" ]
@@ -182,8 +187,9 @@ Vagrant::Config.run do |config|
 
   config.vm.define :drupal do |drupal|
     drupal.vm.box = "centos6364m"
+    drupal.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     drupal.vm.network :hostonly, "192.168.10.70"
-    drupal.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
+    #drupal.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
     drupal.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
       chef.run_list = [ "recipe[drupal::default]" ]
