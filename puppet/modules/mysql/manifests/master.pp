@@ -36,4 +36,8 @@ class mysql::master {
     path => ['/bin','/usr/bin'],
     require => Exec['create_db'],
   }
+  exec { 'grant_client' :
+    command => "mysql -u root -e \"CREATE USER '$client_user'@'$client_ip'; GRANT ALL ON *.* TO '$client_user'@'$client_ip';\"",
+    path => ['/bin','/usr/bin']
+  }
 }
