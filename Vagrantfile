@@ -1,5 +1,15 @@
 Vagrant::Config.run do |config|
 
+  config.vm.define :tomcat do |tom|
+    tom.vm.box = "centos64"
+    tom.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
+    tom.vm.network :hostonly, "192.168.30.10"
+    tom.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "chef/cookbooks"
+      chef.run_list = [ "recipe[tomcat::default]" ]
+    end
+  end
+
   config.vm.define :dev1 do |dev1|
     dev1.vm.box = "quantal64"
     dev1.vm.network :hostonly, "192.168.1.5"
@@ -74,12 +84,13 @@ Vagrant::Config.run do |config|
 
   config.vm.define :varnish do |varnish|
     varnish.vm.box = "centos6364m"
-    varnish.vm.network :hostonly, "192.168.1.45"
-    varnish.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "puppet/manifests"
-      puppet.module_path = "puppet/modules"
-      puppet.manifest_file = "varnish.pp"
-    end
+    varnish.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
+    varnish.vm.network :hostonly, "192.168.2.45"
+    varnish.vm.customize ["modifyvm", :id, "--memory", 2048]
+    # varnish.vm.provision :chef_solo do |chef|
+    #   chef.cookbooks_path = "chef/cookbooks"
+    #   chef.run_list = [ "recipe[varnish::default]" ]
+    # end
   end
 
   config.vm.define :dbm do |dbm|
@@ -189,7 +200,6 @@ Vagrant::Config.run do |config|
     drupal.vm.box = "centos6364m"
     drupal.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     drupal.vm.network :hostonly, "192.168.10.70"
-    #drupal.vm.customize ["modifyvm", :id, "--memory", 2048, "--cpus", 4]
     drupal.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
       chef.run_list = [ "recipe[drupal::default]" ]
