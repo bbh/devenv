@@ -2,7 +2,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :tomcat do |tom|
     tom.vm.box = "centos64"
-    tom.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
+    tom.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
     tom.vm.network :hostonly, "192.168.30.10"
     tom.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
@@ -27,26 +27,6 @@ Vagrant::Config.run do |config|
       puppet.manifests_path = "puppet/manifests"
       puppet.module_path = "puppet/modules"
       puppet.manifest_file = "dev.pp"
-    end
-  end
-
-  config.vm.define :svn do |svn|
-    svn.vm.box = "quantal64"
-    svn.vm.network :hostonly, "192.168.1.10"
-    svn.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "puppet/manifests"
-      puppet.module_path = "puppet/modules"
-      puppet.manifest_file = "subversion.pp"
-    end
-  end
-
-  config.vm.define :git do |git|
-    git.vm.box = "quantal64"
-    git.vm.network :hostonly, "192.168.1.15"
-    git.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "puppet/manifests"
-      puppet.module_path = "puppet/modules"
-      puppet.manifest_file = "git.pp"
     end
   end
 
@@ -187,8 +167,8 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.define :wordpress do |wp|
-    wp.vm.box = "centos6364m"
-    wp.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
+    wp.vm.box = "centos64"
+    wp.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
     wp.vm.network :hostonly, "192.168.10.70"
     wp.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
@@ -197,8 +177,8 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.define :drupal do |drupal|
-    drupal.vm.box = "centos6364m"
-    drupal.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
+    drupal.vm.box = "centos64"
+    drupal.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
     drupal.vm.network :hostonly, "192.168.10.70"
     drupal.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
