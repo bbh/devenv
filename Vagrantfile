@@ -6,7 +6,7 @@ Vagrant::Config.run do |config|
     tom.vm.network :hostonly, "192.168.30.10"
     tom.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
-      chef.run_list = [ "recipe[tomcat::default]" ]
+      chef.run_list = ["recipe[tomcat::default]", "recipe[tomcat::jenkins]"]
     end
   end
 
