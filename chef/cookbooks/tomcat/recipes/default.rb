@@ -52,7 +52,7 @@ execute "tomcat-install" do
   command "mkdir #{node['tomcat']['directory']};" +
           "tar xfz #{Chef::Config[:file_cache_path]}/apache-tomcat-#{node['tomcat']['version']}.tar.gz " +
           "--directory=#{node['tomcat']['directory']};" +
-          "echo \"CATALINA_HOME=#{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}\" > /etc/environment;" +
+          "echo \"CATALINA_HOME=#{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}\" >> /etc/environment;" +
           "chown -R #{node['tomcat']['username']}.#{node['tomcat']['username']} #{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}"
   action :run
   not_if { ::File.exists?("#{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}") }
