@@ -1,7 +1,6 @@
 devenv.sublime-project
 devenv.sublime-workspace
-.vagrant
-.vagrant.v1*
-chef/cookbooks/git
+.vagrant*
+chef/cookbooks/tomcat/files
 puppet/modules/mysql/files/mysql-cluster-gpl-7.3.0-linux2.6-x86_64.tar.gz
 chefsolo.rb
