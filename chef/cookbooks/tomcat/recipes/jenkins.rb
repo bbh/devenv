@@ -92,3 +92,8 @@ execute "install-jenkins" do
   command "mv #{jenkins_tmp_path} #{node['jenkins']['directory']}/"
   action :run
 end
+
+# Update PATH
+execute "update-path" do
+  command "echo PATH=$PATH:$ANT_HOME/bin:$MAVEN_HOME/bin:$CATALINA_HOME/bin >> ~/.bash_profile"
+end
