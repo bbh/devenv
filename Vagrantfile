@@ -66,7 +66,8 @@ Vagrant::Config.run do |config|
     varnish.vm.box = "centos6364m"
     varnish.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     varnish.vm.network :hostonly, "192.168.2.45"
-    varnish.vm.customize ["modifyvm", :id, "--memory", 2048]
+    
+    #varnish.vm.customize ["modifyvm", :id, "--memory", 2048]
     # varnish.vm.provision :chef_solo do |chef|
     #   chef.cookbooks_path = "chef/cookbooks"
     #   chef.run_list = [ "recipe[varnish::default]" ]
