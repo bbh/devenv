@@ -8,7 +8,7 @@
 # Install Java 7
 if node['java']['install'] == 'remote'
   # install from repository
-  execute "install-java-local" do
+  execute "install-java-remote" do
     command "yum -y install java7"
     action :run
   end
@@ -21,7 +21,7 @@ elsif node['java']['install'] == 'local'
     group "vagrant"
     not_if { ::File.exists?("#{Chef::Config[:file_cache_path]}/jre-7u45-linux-x64.rpm") }
   end
-  execute "install-java-remote" do
+  execute "install-java-local" do
     command "rpm -i #{Chef::Config[:file_cache_path]}/jre-7u45-linux-x64.rpm"
     action :run
   end
