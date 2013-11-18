@@ -10,6 +10,16 @@ Vagrant::Config.run do |config|
     end
   end
 
+  config.vm.define :weblogic do |wl|
+    wl.vm.box = "centos64"
+    wl.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+    wl.vm.network :hostonly, "192.168.30.20"
+    wl.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "chef/cookbooks"
+      chef.run_list = ["recipe[mirror::default]", "recipe[weblogic::default]"]
+    end
+  end
+
   config.vm.define :dev1 do |dev1|
     dev1.vm.box = "quantal64"
     dev1.vm.network :hostonly, "192.168.1.5"
@@ -45,17 +55,6 @@ Vagrant::Config.run do |config|
     memcached.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
     memcached.vm.network :hostonly, "192.168.1.40"
     memcached.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "puppet/manifests"
-      puppet.module_path = "puppet/modules"
-      puppet.manifest_file = "memcached.pp"
-    end
-  end
-
-  config.vm.define :memcached2 do |memcached2|
-    memcached2.vm.box = "centos6364m"
-    memcached2.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
-    memcached2.vm.network :hostonly, "192.168.1.41"
-    memcached2.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
       puppet.module_path = "puppet/modules"
       puppet.manifest_file = "memcached.pp"
