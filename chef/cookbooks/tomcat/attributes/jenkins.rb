@@ -7,9 +7,9 @@ default['ant']['directory'] = "/usr/local/ant"
 default['ant']['username'] = "vagrant"
 
 default['maven']['install'] = "local"
-default['maven']['version'] = "3.0.5"
+default['maven']['version'] = "3.1.1"
 default['maven']['mirror'] = "http://www.us.apache.org/dist/maven/maven-3"
-default['maven']['checksum'] = "94c51f0dd139b4b8549204d0605a5859"
+default['maven']['checksum'] = "6342fdf6b0aabc1457c7f8cc218127ed"
 default['maven']['directory'] = "/usr/local/maven"
 default['maven']['username'] = "vagrant"
 
