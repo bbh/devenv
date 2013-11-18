@@ -1,5 +1,6 @@
 # General settings
-default['java']['install'] = "local"
+default['java']['install'] = "remote"
+
 default['tomcat']['install'] = "local"
 default['tomcat']['version'] = "8.0.0-RC5"
 default['tomcat']['mirror'] = "http://www.us.apache.org/dist/tomcat/tomcat-8"
